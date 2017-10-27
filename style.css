@@ -1,0 +1,14 @@
+.dices {
+    font-size: 2em;
+}
+
+.dice {
+    margin: 2px;
+}
+.dice.bg-success {
+    background-color: green;
+}
+
+.dice.bg-danger {
+    background-color: red;
+}

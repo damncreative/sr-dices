@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Shadowrun Dices</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://diafygi.github.io/dice-css/dice-1.0.min.css">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+
+    <script src="main.js"></script>
+</head>
+
+<body ng-controller="AppCtrl">
+    <nav class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                    aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="">Shadowrun Dices</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <!-- <li class="active">
+                        <a href="#">Home</a>
+                    </li> -->
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 rolls">
+                <div ng-repeat="roll in rolls" class="row roll">
+                    <div class="dices col-md-10">
+                        <span ng-repeat="dice in roll.dices track by $index" class="dice dice-{{dice}}" title="Dice {{ dice }}" ng-class="diceClass(dice)"></span>
+                    </div>
+                    <div class="col-md-2 result">
+                        <h3 class="text-center text-success">successes</h3>
+                        <p class="text-center lead">
+                            {{ roll.successes }}
+                        </p>
+                        <button ng-if="roll.crit" class="btn btn-lg btn-block btn-danger disabled">CRIT</button>
+                        <button ng-if="roll.slip" class="btn btn-lg btn-block btn-warning disabled">SLIP</button>
+                    </div>
+                    <div class="col-md-12">
+                        <p class="text-right">{{ roll.date | date:'medium' }}</p>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div id="sidebar">
+                <form role="configurator">
+                    <div class="form-group">
+                        <label for="">How much dices?</label>
+                        <input type="number" ng-model="amountOfDices" class="form-control" min="1" max="200" step="1" value="1">
+                    </div>
+                </form>
+                <button class="btn btn-default btn-block" ng-click="addRoll()">Roll</button>
+            </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
