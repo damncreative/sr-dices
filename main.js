@@ -7,7 +7,6 @@ app.controller('AppCtrl', ['$scope', 'Range', 'RollDices', function ($scope, Ran
 
     $scope.addRoll = function () {
         var dices = RollDices($scope.amountOfDices)
-        console.log(dices)
         var successes = dices.filter(function (d) {
             return d >= 5
         }).length
@@ -22,6 +21,7 @@ app.controller('AppCtrl', ['$scope', 'Range', 'RollDices', function ($scope, Ran
             crit: crit,
             date: Date.now()
         })
+        $('#amountOfDices').focus();
     }
 
     $scope.diceClass = function (value) {
