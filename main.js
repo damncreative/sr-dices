@@ -47,13 +47,19 @@ app.factory('Range', [function () {
     }
 }])
 
-app.factory('RollDices', [function () {
+app.factory('RollDices', ['Random', function (Random) {
     return function (amountOfDices) {
         var dices = []
         for (var i = 0; i < amountOfDices; i++) {
-            dices.push(Math.floor((Math.random() * 6) + 1))
+            dices.push(Random(1,6))
         }
         return dices
+    }
+}])
+
+app.factory('Random', [function () {
+    return function randomIntFromInterval(min,max) {
+      return Math.floor(Math.random()*(max-min+1)+min)
     }
 }])
 
